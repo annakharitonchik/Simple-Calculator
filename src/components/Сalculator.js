@@ -1,4 +1,5 @@
 import { Numbers } from "./Numbers.js";
+import { Symbols } from "./Symbols.js";
 
 export const Calculator = () => {
   const calculatorDiv = document.createElement("div");
@@ -8,6 +9,6 @@ export const Calculator = () => {
   };
 
   calculatorDiv.appendChild(Numbers(state));
- 
+  calculatorDiv.appendChild(Symbols());
   return calculatorDiv;
 };
