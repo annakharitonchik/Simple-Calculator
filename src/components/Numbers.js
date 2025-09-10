@@ -7,17 +7,15 @@ export const Numbers = (displayText, state, updateDisplay) => {
     numButton.textContent = num;
     numField.appendChild(numButton);
     numButton.addEventListener("click", () => {
-        if (state.currentNum === "0" || state.currentNum === "Error") {
-          state.currentNum = num.toString();
-        } else {
-          state.currentNum += num.toString();
-        }
-        if (state.firstArg && state.currentNum && state.currentOperator) {
-          state.secondArg = state.currentNum;
-        }
-  
-        updateDisplay(displayText, state);
-      });
+      if (state.currentNum === "0" || state.currentNum === "Error") {
+        state.currentNum = num.toString();
+      } else {
+        state.currentNum += num.toString();
+      }
+    
+
+      updateDisplay(displayText, state);
+    });
   });
   return numField;
 };
