@@ -11,13 +11,23 @@ export const Calculator = () => {
     currentOperator: "",
   };
 
-  const updateDisplay = (displayText, state) => {
-    displayText.textContent = state.currentNum || "0";
+  const updateDisplay = (displayText, state, result = null) => {
+    if (result !== null) {
+      displayText.textContent = result;
+    } else if (state.currentNum) {
+      displayText.textContent = state.currentNum; 
+    } else if (state.secondArg) {
+      displayText.textContent = state.secondArg; 
+    } else if (state.firstArg) {
+      displayText.textContent = state.firstArg; 
+    } else {
+      displayText.textContent = state.currentNum || "0";
+    }
   };
 
   const { displayField, displayText } = Display();
   calculatorDiv.appendChild(displayField);
   calculatorDiv.appendChild(Numbers(displayText, state, updateDisplay));
-  calculatorDiv.appendChild(Symbols(displayText, state));
+  calculatorDiv.appendChild(Symbols(displayText, state, updateDisplay));
   return calculatorDiv;
 };
