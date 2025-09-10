@@ -12,8 +12,12 @@ export const Numbers = (displayText, state, updateDisplay) => {
       } else {
         state.currentNum += num.toString();
       }
-    
-
+      const prevButton = state.lastButton;
+      if (prevButton === "=" && state.firstArg) {
+        state.currentNum = num.toString();
+        state.secondArg = "";
+        state.firstArg = "";
+      }
       updateDisplay(displayText, state);
     });
   });
