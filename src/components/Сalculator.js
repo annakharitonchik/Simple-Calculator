@@ -6,17 +6,18 @@ export const Calculator = () => {
 
   const state = {
     currentNum: "",
+    firstArg: "",
+    secondArg: "",
+    currentOperator: "",
   };
 
   const updateDisplay = (displayText, state) => {
-    
-      displayText.textContent = state.currentNum || "0";
-    
+    displayText.textContent = state.currentNum || "0";
   };
 
   const { displayField, displayText } = Display();
   calculatorDiv.appendChild(displayField);
   calculatorDiv.appendChild(Numbers(displayText, state, updateDisplay));
-  calculatorDiv.appendChild(Symbols());
+  calculatorDiv.appendChild(Symbols(displayText, state));
   return calculatorDiv;
 };
