@@ -8,9 +8,15 @@ export const Calculator = () => {
     currentNum: "",
   };
 
+  const updateDisplay = (displayText, state) => {
+    
+      displayText.textContent = state.currentNum || "0";
+    
+  };
+
   const { displayField, displayText } = Display();
   calculatorDiv.appendChild(displayField);
-  calculatorDiv.appendChild(Numbers(displayText, state));
+  calculatorDiv.appendChild(Numbers(displayText, state, updateDisplay));
   calculatorDiv.appendChild(Symbols());
   return calculatorDiv;
 };
