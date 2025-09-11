@@ -24,6 +24,7 @@ export const Calculator = () => {
     } else {
       displayText.textContent = state.currentNum || "0";
     }
+    displayText.textContent = displayText.textContent.replace(".", ",")
     console.log(
       "first:" + state.firstArg + "\n",
       "operator:" + state.currentOperator + "\n",

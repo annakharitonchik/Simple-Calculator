@@ -9,7 +9,7 @@ export const Symbols = (displayText, state, updateDisplay) => {
       let result = null;
       const prevButton = state.lastButton;
       state.lastButton = symb;
-      if( state.firstArg === "Error"){
+      if (state.firstArg === "Error") {
         state.currentNum = "Error";
         state.firstArg = "";
         state.secondArg = "";
@@ -17,8 +17,8 @@ export const Symbols = (displayText, state, updateDisplay) => {
         state.lastButton = "";
       }
       const doOperation = () => {
-        const a = parseFloat(state.firstArg);
-        const b = parseFloat(state.secondArg);
+        const a = parseFloat(state.firstArg.replace(",", "."));
+        const b = parseFloat(state.secondArg.replace(",", "."));
         switch (state.currentOperator) {
           case "+":
             result = a + b;
@@ -71,8 +71,17 @@ export const Symbols = (displayText, state, updateDisplay) => {
           state.currentNum = result.toString();
           state.firstArg = state.currentNum;
         }
-      }
-
+      } else if (symb === "+/-") {
+        if (!state.currentNum || state.currentNum === "Error") {
+          state.currentNum = "Error";
+        } else {
+          if (state.currentNum.startsWith("-")) {
+            state.currentNum = state.currentNum.slice(1);
+          } else {
+            state.currentNum = "-" + state.currentNum.toString();
+          }
+        }
+      } 
       updateDisplay(displayText, state, result);
     });
   });

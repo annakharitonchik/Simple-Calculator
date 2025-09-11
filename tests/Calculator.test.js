@@ -130,4 +130,17 @@ describe("Calculator operations", () => {
 
     expect(state.currentNum).to.equal("-5");
   });
+  it("No point", () => {
+    const numbers = Numbers(displayText, state, updateDisplay);
+    const symbols = Symbols(displayText, state, updateDisplay);
+
+    clickOnButton(numbers, "5");
+    clickOnButton(numbers, ",");
+    clickOnButton(numbers, "3");
+    clickOnButton(symbols, "+");
+    clickOnButton(numbers, "1");
+    clickOnButton(numbers, ",");
+    clickOnButton(numbers, "3");
+    expect(state.currentNum).to.not.include(".");
+  });
 });
