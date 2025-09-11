@@ -1,0 +1,133 @@
+import { beforeEach, describe, it } from "mocha";
+import { expect } from "chai";
+import { Numbers } from "../src/components/Numbers.js";
+import { Symbols } from "../src/components/Symbols.js";
+import { JSDOM } from "jsdom";
+
+const dom = new JSDOM(`<!DOCTYPE html><body></body>`);
+globalThis.document = dom.window.document;
+globalThis.window = dom.window;
+
+let state;
+let displayText;
+let updateDisplay;
+
+beforeEach(() => {
+  state = {
+    currentNum: "0",
+    firstArg: "",
+    secondArg: "",
+    currentOperator: "",
+    lastButton: "",
+  };
+  displayText = document.createElement("div");
+  updateDisplay = () => {};
+});
+
+const clickOnButton = (element, text) => {
+  const btn = Array.from(element.querySelectorAll("button")).find(
+    (b) => b.textContent === text
+  );
+  if (!btn) throw new Error(`Button "${text}" not found`);
+  btn.click();
+};
+
+describe("Calculator operations", () => {
+  it("Addition: 2 + 3 = 5", () => {
+    const numbers = Numbers(displayText, state, updateDisplay);
+    const symbols = Symbols(displayText, state, updateDisplay);
+
+    clickOnButton(numbers, "2");
+    clickOnButton(symbols, "+");
+    clickOnButton(numbers, "3");
+    clickOnButton(symbols, "=");
+
+    expect(state.currentNum).to.equal("5");
+  });
+  it("Difference: 5 - 3 = 2", () => {
+    const numbers = Numbers(displayText, state, updateDisplay);
+    const symbols = Symbols(displayText, state, updateDisplay);
+
+    clickOnButton(numbers, "5");
+    clickOnButton(symbols, "-");
+    clickOnButton(numbers, "3");
+    clickOnButton(symbols, "=");
+
+    expect(state.currentNum).to.equal("2");
+  });
+  it("Multiplication: 5 * 2 = 10", () => {
+    const numbers = Numbers(displayText, state, updateDisplay);
+    const symbols = Symbols(displayText, state, updateDisplay);
+
+    clickOnButton(numbers, "5");
+    clickOnButton(symbols, "*");
+    clickOnButton(numbers, "2");
+    clickOnButton(symbols, "=");
+
+    expect(state.currentNum).to.equal("10");
+  });
+  it("Division: 10 / 2 = 5", () => {
+    const numbers = Numbers(displayText, state, updateDisplay);
+    const symbols = Symbols(displayText, state, updateDisplay);
+
+    clickOnButton(numbers, "1");
+    clickOnButton(numbers, "0");
+    clickOnButton(symbols, "/");
+    clickOnButton(numbers, "2");
+    clickOnButton(symbols, "=");
+
+    expect(state.currentNum).to.equal("5");
+  });
+  it("Error: 10 / 0 = Error", () => {
+    const numbers = Numbers(displayText, state, updateDisplay);
+    const symbols = Symbols(displayText, state, updateDisplay);
+
+    clickOnButton(numbers, "1");
+    clickOnButton(numbers, "0");
+    clickOnButton(symbols, "/");
+    clickOnButton(numbers, "0");
+    clickOnButton(symbols, "=");
+
+    expect(state.currentNum).to.equal("Error");
+  });
+  it("Complex addition: 5 + 5 + 2 + 3  = 15", () => {
+    const numbers = Numbers(displayText, state, updateDisplay);
+    const symbols = Symbols(displayText, state, updateDisplay);
+
+    clickOnButton(numbers, "5");
+    clickOnButton(symbols, "+");
+    clickOnButton(numbers, "5");
+    clickOnButton(symbols, "+");
+    clickOnButton(numbers, "2");
+    clickOnButton(symbols, "+");
+    clickOnButton(numbers, "3");
+    clickOnButton(symbols, "=");
+
+    expect(state.currentNum).to.equal("15");
+  });
+  it("Click on equal a few times: 10 + 1 = 15", () => {
+    const numbers = Numbers(displayText, state, updateDisplay);
+    const symbols = Symbols(displayText, state, updateDisplay);
+
+    clickOnButton(numbers, "1");
+    clickOnButton(numbers, "0");
+    clickOnButton(symbols, "+");
+    clickOnButton(numbers, "1");
+    clickOnButton(symbols, "=");
+    clickOnButton(symbols, "=");
+    clickOnButton(symbols, "=");
+    clickOnButton(symbols, "=");
+    clickOnButton(symbols, "=");
+
+    expect(state.currentNum).to.equal("15");
+  });
+  it("Plus/minus: 5 = -5", () => {
+    const numbers = Numbers(displayText, state, updateDisplay);
+    const symbols = Symbols(displayText, state, updateDisplay);
+
+    clickOnButton(numbers, "5");
+    clickOnButton(symbols, "+/-");
+
+    expect(state.currentNum).to.equal("-5");
+  });
+});
