@@ -78,7 +78,7 @@ describe("Calculator operations", () => {
 
     expect(state.currentNum).to.equal("5");
   });
-  it("Error: 10 / 0 = Error", () => {
+  it("Division by 0 produces Error: 10 / 0 = Error", () => {
     const numbers = Numbers(displayText, state, updateDisplay);
     const symbols = Symbols(displayText, state, updateDisplay);
 
@@ -132,15 +132,94 @@ describe("Calculator operations", () => {
   });
   it("No point", () => {
     const numbers = Numbers(displayText, state, updateDisplay);
-    const symbols = Symbols(displayText, state, updateDisplay);
 
     clickOnButton(numbers, "5");
     clickOnButton(numbers, ",");
     clickOnButton(numbers, "3");
-    clickOnButton(symbols, "+");
     clickOnButton(numbers, "1");
     clickOnButton(numbers, ",");
     clickOnButton(numbers, "3");
+    expect(state.currentNum).to.equal("5,313");
     expect(state.currentNum).to.not.include(".");
+  });
+  it("Percent: 5% = 0,05", () => {
+    const numbers = Numbers(displayText, state, updateDisplay);
+    const symbols = Symbols(displayText, state, updateDisplay);
+
+    clickOnButton(numbers, "5");
+    clickOnButton(symbols, "%");
+    clickOnButton(symbols, "=");
+    expect(state.currentNum).to.equal("0,05");
+  });
+  it("Addition with comma: 1,5 + 2,5 = 4", () => {
+    const numbers = Numbers(displayText, state, updateDisplay);
+    const symbols = Symbols(displayText, state, updateDisplay);
+
+    clickOnButton(numbers, "1");
+    clickOnButton(numbers, ",");
+    clickOnButton(numbers, "5");
+    clickOnButton(symbols, "+");
+    clickOnButton(numbers, "2");
+    clickOnButton(numbers, ",");
+    clickOnButton(numbers, "5");
+    clickOnButton(symbols, "=");
+
+    expect(state.currentNum).to.equal("4");
+  });
+  it("Toggle sign on zero", () => {
+    const numbers = Numbers(displayText, state, updateDisplay);
+    const symbols = Symbols(displayText, state, updateDisplay);
+
+    clickOnButton(numbers, "0");
+    clickOnButton(symbols, "+/-");
+    expect(state.currentNum).to.equal("-0");
+
+    clickOnButton(symbols, "+/-");
+    expect(state.currentNum).to.equal("0");
+  });
+  it("Complex sequence with comma: 1,5 + 2,5 - 1,0 = 3", () => {
+    const numbers = Numbers(displayText, state, updateDisplay);
+    const symbols = Symbols(displayText, state, updateDisplay);
+
+    clickOnButton(numbers, "1");
+    clickOnButton(numbers, ",");
+    clickOnButton(numbers, "5");
+    clickOnButton(symbols, "+");
+    clickOnButton(numbers, "2");
+    clickOnButton(numbers, ",");
+    clickOnButton(numbers, "5");
+    clickOnButton(symbols, "-");
+    clickOnButton(numbers, "1");
+    clickOnButton(numbers, ",");
+    clickOnButton(numbers, "0");
+    clickOnButton(symbols, "=");
+
+    expect(state.currentNum).to.equal("3");
+  });
+  it("Mixed operations: 50,5% + 1 = 1,505", () => {
+    const numbers = Numbers(displayText, state, updateDisplay);
+    const symbols = Symbols(displayText, state, updateDisplay);
+  
+    clickOnButton(numbers, "5");
+    clickOnButton(numbers, "0");
+    clickOnButton(numbers, ",");
+    clickOnButton(numbers, "5");
+    clickOnButton(symbols, "%"); 
+    clickOnButton(symbols, "+");
+    clickOnButton(numbers, "1");
+    clickOnButton(symbols, "=");
+  
+    expect(state.currentNum).to.equal("1,505");
+  });
+  it("-0 behaves like 0 in calculations: -0 + 5 = 5", () => {
+    const numbers = Numbers(displayText, state, updateDisplay);
+    const symbols = Symbols(displayText, state, updateDisplay);
+  
+    state.currentNum = "-0";
+    clickOnButton(symbols, "+");
+    clickOnButton(numbers, "5");
+    clickOnButton(symbols, "=");
+  
+    expect(state.currentNum).to.equal("5");
   });
 });
