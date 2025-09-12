@@ -1,6 +1,7 @@
 import { Numbers } from "./Numbers.js";
 import { Symbols } from "./Symbols.js";
 import { Display } from "./Display.js";
+import "../styles/Calculator.css"
 export const Calculator = () => {
   const calculatorDiv = document.createElement("div");
   calculatorDiv.classList = "Calculator";
