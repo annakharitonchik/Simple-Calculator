@@ -8,7 +8,7 @@ export const Numbers = (displayText, state, updateDisplay) => {
     numField.appendChild(numButton);
     numButton.addEventListener("click", () => {
       if (num === ",") {
-        if (!state.currentNum.includes(",")) state.currentNum += ",";
+        if (!state.currentNum.includes(",") && state.currentNum !== "Error" ) state.currentNum += ",";
       } else {
         if (state.currentNum === "0" || state.currentNum === "Error") {
           state.currentNum = num.toString();

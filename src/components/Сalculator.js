@@ -9,12 +9,12 @@ export const Calculator = () => {
     firstArg: "",
     secondArg: "",
     currentOperator: "",
-    lastButton: ""
+    lastButton: "",
   };
 
   const updateDisplay = (displayText, state, result = null) => {
     if (result !== null) {
-      displayText.textContent = result;
+      displayText.textContent = parseFloat(result.toFixed(8)).toString().replace(".", ",")
     } else if (state.currentNum) {
       displayText.textContent = state.currentNum;
     } else if (state.secondArg) {
@@ -24,7 +24,8 @@ export const Calculator = () => {
     } else {
       displayText.textContent = state.currentNum || "0";
     }
-    
+    displayText.textContent = displayText.textContent.replace(".", ",");
+
     console.log(
       "first:" + state.firstArg + "\n",
       "operator:" + state.currentOperator + "\n",

@@ -68,10 +68,14 @@ export const Symbols = (displayText, state, updateDisplay) => {
         if (state.firstArg && state.currentOperator && state.secondArg) {
           doOperation();
 
-          state.currentNum =
-            typeof result === "number"
-              ? result.toString().replace(".", ",")
-              : result; 
+          if (typeof result === "number") {
+            state.currentNum = parseFloat(result.toFixed(8))
+              .toString()
+              .replace(".", ",");
+          } else {
+            state.currentNum = result;
+          }
+
           state.firstArg = state.currentNum;
         }
       } else if (symb === "+/-") {
