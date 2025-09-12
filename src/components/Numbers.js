@@ -8,15 +8,22 @@ export const Numbers = (displayText, state, updateDisplay) => {
     numField.appendChild(numButton);
     numButton.addEventListener("click", () => {
       if (num === ",") {
-        if (!state.currentNum.includes(",") && state.currentNum !== "Error" ) state.currentNum += ",";
+        if (
+          !state.currentNum.includes(",") &&
+          state.currentNum !== "Error" &&
+          state.currentNum.length < 9
+        )
+          state.currentNum += ",";
       } else {
         if (state.currentNum === "0" || state.currentNum === "Error") {
           state.currentNum = num.toString();
         } else {
-          state.currentNum += num.toString();
+          if (state.currentNum.replace(".", ",").length < 9) {
+            state.currentNum += num.toString();
+          }
         }
         const prevButton = state.lastButton;
-        if (prevButton === "=" && state.firstArg) {
+        if ((prevButton === "=" && state.firstArg) || prevButton === "%") {
           state.currentNum = num.toString();
           state.secondArg = "";
           state.firstArg = "";

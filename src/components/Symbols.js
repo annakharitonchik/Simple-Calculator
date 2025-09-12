@@ -68,14 +68,10 @@ export const Symbols = (displayText, state, updateDisplay) => {
         if (state.firstArg && state.currentOperator && state.secondArg) {
           doOperation();
 
-          if (typeof result === "number") {
-            state.currentNum = parseFloat(result.toFixed(8))
-              .toString()
-              .replace(".", ",");
-          } else {
-            state.currentNum = result;
-          }
-
+          state.currentNum =
+            typeof result === "number"
+              ? parseFloat(result.toPrecision(9)).toString().replace(".", ",")
+              : result;
           state.firstArg = state.currentNum;
         }
       } else if (symb === "+/-") {
@@ -93,7 +89,7 @@ export const Symbols = (displayText, state, updateDisplay) => {
           state.currentNum = "Error";
         } else {
           let num = parseFloat(state.currentNum.replace(",", ".")) / 100;
-          state.currentNum = num.toString().replace(".", ",");
+          state.currentNum = num.toString().slice(0, 10).replace(".", ",");
         }
       }
       updateDisplay(displayText, state, result);

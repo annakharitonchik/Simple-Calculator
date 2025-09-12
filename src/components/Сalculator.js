@@ -11,10 +11,12 @@ export const Calculator = () => {
     currentOperator: "",
     lastButton: "",
   };
-
   const updateDisplay = (displayText, state, result = null) => {
     if (result !== null) {
-      displayText.textContent = parseFloat(result.toFixed(8)).toString().replace(".", ",")
+      displayText.textContent =
+        typeof result === "number"
+          ? parseFloat(result.toPrecision(9)).toString().replace(".", ",")
+          : result;
     } else if (state.currentNum) {
       displayText.textContent = state.currentNum;
     } else if (state.secondArg) {
@@ -33,10 +35,42 @@ export const Calculator = () => {
       "current:" + state.currentNum
     );
   };
-
   const { displayField, displayText } = Display();
   calculatorDiv.appendChild(displayField);
-  calculatorDiv.appendChild(Numbers(displayText, state, updateDisplay));
-  calculatorDiv.appendChild(Symbols(displayText, state, updateDisplay));
+
+  const numbersField = Numbers(displayText, state, updateDisplay);
+  numbersField.id = "numbers";
+  calculatorDiv.appendChild(numbersField);
+
+  const symbolsField = Symbols(displayText, state, updateDisplay);
+  symbolsField.id = "symbols";
+  calculatorDiv.appendChild(symbolsField);
+
+  const numbers = Array.from(numbersField.querySelectorAll("button"));
+  const operators = Array.from(symbolsField.querySelectorAll("button"));
+
+  const keyboardInput = (eo) => {
+    const key = eo.key;
+    if ((key >= "0" && key <= "9") || key === "," || key === ".") {
+      const button = numbers.find(
+        (butt) => butt.textContent === (key === "." ? "," : key)
+      );
+      button && button.click();
+    } else if (["+", "-", "/", "*"].includes(key)) {
+      const button = operators.find((butt) => butt.textContent === key);
+      button && button.click();
+    } else if (key === "=" || key === "Enter") {
+      const button = operators.find((butt) => butt.textContent === "=");
+      button && button.click();
+    } else if (key === "%") {
+      const button = operators.find((butt) => butt.textContent === "%");
+      button && button.click();
+    } else if (key === "Delete") {
+      const button = operators.find((butt) => butt.textContent === "AC");
+      button && button.click();
+    }
+  };
+
+  document.addEventListener("keydown", keyboardInput);
   return calculatorDiv;
 };
