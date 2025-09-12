@@ -4,7 +4,10 @@ import { Display } from "./Display.js";
 import "../styles/Calculator.css"
 export const Calculator = () => {
   const calculatorDiv = document.createElement("div");
+  const numsAndSymbs = document.createElement("div");
+
   calculatorDiv.classList = "Calculator";
+  numsAndSymbs.classList = "numsAndSymbs"
   const state = {
     currentNum: "0",
     firstArg: "",
@@ -39,13 +42,14 @@ export const Calculator = () => {
   const { displayField, displayText } = Display();
   calculatorDiv.appendChild(displayField);
 
+  
+  const {symbolsField} = Symbols(displayText, state, updateDisplay);
+  symbolsField.classList = "Symbols";
+  
   const numbersField = Numbers(displayText, state, updateDisplay);
   numbersField.classList = "Numbers";
-  calculatorDiv.appendChild(numbersField);
-
-  const symbolsField = Symbols(displayText, state, updateDisplay);
-  symbolsField.classList = "Symbols";
-  calculatorDiv.appendChild(symbolsField);
+  numsAndSymbs.appendChild(numbersField)
+  calculatorDiv.appendChild(numsAndSymbs);
 
   const numbers = Array.from(numbersField.querySelectorAll("button"));
   const operators = Array.from(symbolsField.querySelectorAll("button"));

@@ -1,0 +1,78 @@
+.Numbers {
+  display: grid;
+  width: 75%;
+  height: 60%;
+  grid-template-columns: repeat(3, 1fr);
+  button {
+    border-radius: 0px;
+    border-left: none;
+    border-bottom: none;
+    border-top: 2px solid #535353;
+    border-right: 2px solid #535353;
+    background-color: #7d7d7d;
+    color: #ebebeb;
+    font-family: "Cossette Texte", sans-serif;
+    font-size: 37px;
+  }
+}
+#NumButt0 {
+  grid-column-start: 1;
+  grid-column-end: 3;
+  grid-row-start: 4;
+  grid-row-end: 5;
+  border-bottom-left-radius: 13px;
+}
+#NumButt1 {
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 3;
+  grid-row-end: 4;
+}
+#NumButt2 {
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 3;
+  grid-row-end: 4;
+}
+#NumButt3 {
+  grid-column-start: 3;
+  grid-column-end: 4;
+  grid-row-start: 3;
+  grid-row-end: 4;
+}
+#NumButt4 {
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 2;
+  grid-row-end: 3;
+}
+#NumButt5 {
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 2;
+  grid-row-end: 3;
+}
+#NumButt6 {
+  grid-column-start: 3;
+  grid-column-end: 3;
+  grid-row-start: 2;
+  grid-row-end: 3;
+}
+#NumButt7 {
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 1;
+  grid-row-end: 2;
+}
+#NumButt8 {
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 1;
+  grid-row-end: 2;
+}
+#NumButt9 {
+  grid-column-start: 3;
+  grid-column-end: 4;
+  grid-row-start: 1;
+  grid-row-end: 2;
+}

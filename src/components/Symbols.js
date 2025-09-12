@@ -1,11 +1,23 @@
 export const Symbols = (displayText, state, updateDisplay) => {
   const symbolsField = document.createElement("div");
+  const symbolsRow = document.createElement("div");
+  symbolsRow.classList = "symbolsRow";
   const symbols = ["AC", "+/-", "%", "/", "*", "-", "+", "="];
   symbols.forEach((symb, i) => {
     const symbButton = document.createElement("button");
     symbButton.textContent = symb;
     symbButton.id = `SymbButt${i}`;
-    symbolsField.appendChild(symbButton);
+    if (
+      symb === "/" ||
+      symb === "*" ||
+      symb === "-" ||
+      symb === "+" ||
+      symb === "="
+    ) {
+      symbolsField.appendChild(symbButton);
+    } else {
+      symbolsRow.appendChild(symbButton);
+    }
     symbButton.addEventListener("click", () => {
       let result = null;
       const prevButton = state.lastButton;
@@ -97,5 +109,5 @@ export const Symbols = (displayText, state, updateDisplay) => {
     });
   });
 
-  return symbolsField;
+  return { symbolsField, symbolsRow };
 };
