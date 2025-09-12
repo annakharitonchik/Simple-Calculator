@@ -3,7 +3,7 @@ import { Symbols } from "./Symbols.js";
 import { Display } from "./Display.js";
 export const Calculator = () => {
   const calculatorDiv = document.createElement("div");
-
+  calculatorDiv.classList = "Calculator";
   const state = {
     currentNum: "0",
     firstArg: "",
@@ -39,11 +39,11 @@ export const Calculator = () => {
   calculatorDiv.appendChild(displayField);
 
   const numbersField = Numbers(displayText, state, updateDisplay);
-  numbersField.id = "numbers";
+  numbersField.classList = "Numbers";
   calculatorDiv.appendChild(numbersField);
 
   const symbolsField = Symbols(displayText, state, updateDisplay);
-  symbolsField.id = "symbols";
+  symbolsField.classList = "Symbols";
   calculatorDiv.appendChild(symbolsField);
 
   const numbers = Array.from(numbersField.querySelectorAll("button"));

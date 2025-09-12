@@ -2,9 +2,10 @@ export const Numbers = (displayText, state, updateDisplay) => {
   const numField = document.createElement("div");
   const numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, ","];
 
-  numbers.forEach((num) => {
+  numbers.forEach((num, i) => {
     const numButton = document.createElement("button");
     numButton.textContent = num;
+    numButton.id = `NumButt${i}`;
     numField.appendChild(numButton);
     numButton.addEventListener("click", () => {
       if (num === ",") {

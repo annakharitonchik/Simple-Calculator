@@ -1,9 +1,10 @@
 export const Symbols = (displayText, state, updateDisplay) => {
   const symbolsField = document.createElement("div");
   const symbols = ["AC", "+/-", "%", "/", "*", "-", "+", "="];
-  symbols.forEach((symb) => {
+  symbols.forEach((symb, i) => {
     const symbButton = document.createElement("button");
     symbButton.textContent = symb;
+    symbButton.id = `SymbButt${i}`;
     symbolsField.appendChild(symbButton);
     symbButton.addEventListener("click", () => {
       let result = null;
