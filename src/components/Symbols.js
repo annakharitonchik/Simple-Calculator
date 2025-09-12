@@ -1,7 +1,8 @@
+import "../styles/Symbols.css"
 export const Symbols = (displayText, state, updateDisplay) => {
   const symbolsField = document.createElement("div");
-  const symbolsRow = document.createElement("div");
-  symbolsRow.classList = "symbolsRow";
+  const symbolsColumn = document.createElement("div");
+  symbolsColumn.classList = "SymbolsColumn";
   const symbols = ["AC", "+/-", "%", "/", "*", "-", "+", "="];
   symbols.forEach((symb, i) => {
     const symbButton = document.createElement("button");
@@ -14,9 +15,9 @@ export const Symbols = (displayText, state, updateDisplay) => {
       symb === "+" ||
       symb === "="
     ) {
-      symbolsField.appendChild(symbButton);
+      symbolsColumn.appendChild(symbButton);
     } else {
-      symbolsRow.appendChild(symbButton);
+      symbolsField.appendChild(symbButton);
     }
     symbButton.addEventListener("click", () => {
       let result = null;
@@ -109,5 +110,5 @@ export const Symbols = (displayText, state, updateDisplay) => {
     });
   });
 
-  return { symbolsField, symbolsRow };
+  return { symbolsField, symbolsColumn};
 };

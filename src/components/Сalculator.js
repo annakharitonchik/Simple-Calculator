@@ -1,13 +1,14 @@
 import { Numbers } from "./Numbers.js";
 import { Symbols } from "./Symbols.js";
 import { Display } from "./Display.js";
-import "../styles/Calculator.css"
+import "../styles/Calculator.css";
 export const Calculator = () => {
   const calculatorDiv = document.createElement("div");
   const numsAndSymbs = document.createElement("div");
-
+  const buttons = document.createElement("div");
   calculatorDiv.classList = "Calculator";
-  numsAndSymbs.classList = "numsAndSymbs"
+  numsAndSymbs.classList = "NumsAndSymbs";
+  buttons.classList = "Buttons";
   const state = {
     currentNum: "0",
     firstArg: "",
@@ -39,17 +40,25 @@ export const Calculator = () => {
       "current:" + state.currentNum
     );
   };
-  const { displayField, displayText } = Display();
-  calculatorDiv.appendChild(displayField);
-
   
-  const {symbolsField} = Symbols(displayText, state, updateDisplay);
+  const { displayField, displayText } = Display();
+  
+  const { symbolsField, symbolsColumn } = Symbols(
+    displayText,
+    state,
+    updateDisplay
+  );
   symbolsField.classList = "Symbols";
   
   const numbersField = Numbers(displayText, state, updateDisplay);
   numbersField.classList = "Numbers";
-  numsAndSymbs.appendChild(numbersField)
-  calculatorDiv.appendChild(numsAndSymbs);
+  
+  numsAndSymbs.appendChild(symbolsField);
+  numsAndSymbs.appendChild(numbersField);
+  calculatorDiv.appendChild(displayField);
+  buttons.appendChild(numsAndSymbs);
+  buttons.appendChild(symbolsColumn);
+  calculatorDiv.appendChild(buttons);
 
   const numbers = Array.from(numbersField.querySelectorAll("button"));
   const operators = Array.from(symbolsField.querySelectorAll("button"));

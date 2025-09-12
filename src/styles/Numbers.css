@@ -1,8 +1,9 @@
-.Numbers {
+.Numbers,
+.Symbols {
   display: grid;
-  width: 75%;
-  height: 60%;
+  height: 100%;
   grid-template-columns: repeat(3, 1fr);
+  width: 100%;
   button {
     border-radius: 0px;
     border-left: none;
@@ -75,4 +76,9 @@
   grid-column-end: 4;
   grid-row-start: 1;
   grid-row-end: 2;
+}
+.NumsAndSymbs {
+  display: grid;
+  grid-template-rows: 1fr 4fr;
+  height: 100%;
 }
