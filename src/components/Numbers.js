@@ -1,4 +1,3 @@
-import "../styles/Numbers.css"
 export const Numbers = (displayText, state, updateDisplay) => {
   const numField = document.createElement("div");
   const numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, ","];
@@ -17,7 +16,7 @@ export const Numbers = (displayText, state, updateDisplay) => {
         )
           state.currentNum += ",";
       } else {
-        if (state.currentNum === "0" || state.currentNum === "Error") {
+        if (state.currentNum === "0" ||state.currentNum === "-0" || state.currentNum === "Error") {
           state.currentNum = num.toString();
         } else {
           if (state.currentNum.replace(".", ",").length < 9) {
@@ -25,7 +24,7 @@ export const Numbers = (displayText, state, updateDisplay) => {
           }
         }
         const prevButton = state.lastButton;
-        if ((prevButton === "=" && state.firstArg) || prevButton === "%") {
+        if ((prevButton === "\u003D" && state.firstArg) || prevButton === "%") {
           state.currentNum = num.toString();
           state.secondArg = "";
           state.firstArg = "";
