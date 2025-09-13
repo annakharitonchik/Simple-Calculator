@@ -9,6 +9,17 @@ justify-content: end;
     color: #ebebeb;
     font-family: "Inter", sans-serif;
    font-weight: 200;
+  }
+}
+@media (min-width: 300px) {
+    
+  .DisplayField{
+    font-size: 120px;
+  }
+  
+}
+@media (min-width: 1080px) {
+  .DisplayField{
     font-size: 100px;
   }
 }

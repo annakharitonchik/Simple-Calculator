@@ -19,3 +19,20 @@
   height: 75%;
 }
 
+@media (min-width: 300px) {
+  .Calculator {
+    width: 780px;
+    height: 1080px;
+   
+  }
+  button{
+    touch-action: manipulation;
+  }
+}
+
+@media (min-width: 1080px) {
+  .Calculator {
+    width: 585px;
+  height: 810px;
+  }
+}

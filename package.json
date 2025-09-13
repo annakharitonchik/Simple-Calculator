@@ -7,7 +7,7 @@
     "test": "mocha ./tests/*",
     "start": "webpack serve",
     "build": "webpack --mode production",
-    "lint": "eslint . --ext .js,.jsx,.ts,.tsx --max-warnings=0",
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx --max-warnings=0 --ignore-pattern dist/*",
     "prepare": "husky && husky install",
     "deploy": "gh-pages -d dist"
   },

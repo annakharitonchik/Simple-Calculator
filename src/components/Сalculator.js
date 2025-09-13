@@ -39,7 +39,7 @@ export const Calculator = () => {
         .toExponential([3])
         .replace(".", ",");
     } else {
-      displayText.textContent = displayText.textContent.replace(".", ",");
+      displayText.textContent = new Intl.NumberFormat('ru-RU').format(displayText.textContent.replace(".", ","))
     }
 
     console.log(

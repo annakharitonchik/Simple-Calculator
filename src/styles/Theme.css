@@ -2,14 +2,34 @@
     display: flex;
     flex-direction: row;
     gap: 15px;
-    margin-top: 12px;
-    margin-left: 11px;
+    
     border-bottom-left-radius: 13px;
     .ThemeColor{
         border: none;
-        height: 30px;
-        width: 30px;
         border-radius: 50%;
         cursor: pointer;
     }
 }
+
+@media (min-width: 300px) {
+    
+    .ThemeColor{
+        height: 40px;
+        width: 40px;
+    }
+    .ThemeDiv{
+        margin-top: 15px;
+    margin-left: 20px; 
+    }
+  }
+  @media (min-width: 1080px) {
+    .ThemeColor{
+        height: 30px;
+        width: 30px;
+    }
+    .ThemeDiv{
+        margin-top: 12px;
+        margin-left: 11px;
+    }
+  }
+  
