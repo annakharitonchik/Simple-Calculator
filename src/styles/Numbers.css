@@ -14,7 +14,7 @@
     color: #ebebeb;
     font-family: "Inter", sans-serif;
     font-weight: 400;
-    font-size: 37px;
+    font-size: 56px;
     transition: ease 1s;
   }
   button.active {
@@ -28,7 +28,7 @@
   grid-column-end: 3;
   grid-row-start: 4;
   grid-row-end: 5;
-  border-bottom-left-radius: 13px;
+  border-bottom-left-radius: 20px;
 }
 #NumButt1 {
   grid-column-start: 1;
