@@ -35,10 +35,10 @@ const clickOnButton = (element, text) => {
 describe("Calculator operations", () => {
   it("Addition: 2 + 3 = 5", () => {
     const numbers = Numbers(displayText, state, updateDisplay);
-    const symbols = Symbols(displayText, state, updateDisplay);
+    const symbols = Symbols(displayText, state, updateDisplay).symbolsColumn;
 
     clickOnButton(numbers, "2");
-    clickOnButton(symbols, "+");
+    clickOnButton(symbols, "\u002B");
     clickOnButton(numbers, "3");
     clickOnButton(symbols, "=");
 
@@ -46,10 +46,10 @@ describe("Calculator operations", () => {
   });
   it("Difference: 5 - 3 = 2", () => {
     const numbers = Numbers(displayText, state, updateDisplay);
-    const symbols = Symbols(displayText, state, updateDisplay);
+    const symbols = Symbols(displayText, state, updateDisplay).symbolsColumn;
 
     clickOnButton(numbers, "5");
-    clickOnButton(symbols, "-");
+    clickOnButton(symbols, "\u2212");
     clickOnButton(numbers, "3");
     clickOnButton(symbols, "=");
 
@@ -57,10 +57,10 @@ describe("Calculator operations", () => {
   });
   it("Multiplication: 5 * 2 = 10", () => {
     const numbers = Numbers(displayText, state, updateDisplay);
-    const symbols = Symbols(displayText, state, updateDisplay);
+    const symbols = Symbols(displayText, state, updateDisplay).symbolsColumn;
 
     clickOnButton(numbers, "5");
-    clickOnButton(symbols, "*");
+    clickOnButton(symbols, "\u00D7");
     clickOnButton(numbers, "2");
     clickOnButton(symbols, "=");
 
@@ -68,11 +68,11 @@ describe("Calculator operations", () => {
   });
   it("Division: 10 / 2 = 5", () => {
     const numbers = Numbers(displayText, state, updateDisplay);
-    const symbols = Symbols(displayText, state, updateDisplay);
+    const symbols = Symbols(displayText, state, updateDisplay).symbolsColumn;
 
     clickOnButton(numbers, "1");
     clickOnButton(numbers, "0");
-    clickOnButton(symbols, "/");
+    clickOnButton(symbols, "\u00F7");
     clickOnButton(numbers, "2");
     clickOnButton(symbols, "=");
 
@@ -80,11 +80,11 @@ describe("Calculator operations", () => {
   });
   it("Division by 0 produces Error: 10 / 0 = Error", () => {
     const numbers = Numbers(displayText, state, updateDisplay);
-    const symbols = Symbols(displayText, state, updateDisplay);
+    const symbols = Symbols(displayText, state, updateDisplay).symbolsColumn;
 
     clickOnButton(numbers, "1");
     clickOnButton(numbers, "0");
-    clickOnButton(symbols, "/");
+    clickOnButton(symbols, "\u00F7");
     clickOnButton(numbers, "0");
     clickOnButton(symbols, "=");
 
@@ -92,14 +92,14 @@ describe("Calculator operations", () => {
   });
   it("Complex addition: 5 + 5 + 2 + 3  = 15", () => {
     const numbers = Numbers(displayText, state, updateDisplay);
-    const symbols = Symbols(displayText, state, updateDisplay);
+    const symbols = Symbols(displayText, state, updateDisplay).symbolsColumn;
 
     clickOnButton(numbers, "5");
-    clickOnButton(symbols, "+");
+    clickOnButton(symbols, "\u002B");
     clickOnButton(numbers, "5");
-    clickOnButton(symbols, "+");
+    clickOnButton(symbols, "\u002B");
     clickOnButton(numbers, "2");
-    clickOnButton(symbols, "+");
+    clickOnButton(symbols, "\u002B");
     clickOnButton(numbers, "3");
     clickOnButton(symbols, "=");
 
@@ -107,11 +107,11 @@ describe("Calculator operations", () => {
   });
   it("Click on equal a few times: 10 + 1 = 15", () => {
     const numbers = Numbers(displayText, state, updateDisplay);
-    const symbols = Symbols(displayText, state, updateDisplay);
+    const symbols = Symbols(displayText, state, updateDisplay).symbolsColumn;
 
     clickOnButton(numbers, "1");
     clickOnButton(numbers, "0");
-    clickOnButton(symbols, "+");
+    clickOnButton(symbols, "\u002B");
     clickOnButton(numbers, "1");
     clickOnButton(symbols, "=");
     clickOnButton(symbols, "=");
@@ -123,10 +123,10 @@ describe("Calculator operations", () => {
   });
   it("Plus/minus: 5 = -5", () => {
     const numbers = Numbers(displayText, state, updateDisplay);
-    const symbols = Symbols(displayText, state, updateDisplay);
+    const symbols = Symbols(displayText, state, updateDisplay).symbolsField;
 
     clickOnButton(numbers, "5");
-    clickOnButton(symbols, "+/-");
+    clickOnButton(symbols, "\u002B/\u2212");
 
     expect(state.currentNum).to.equal("-5");
   });
@@ -147,18 +147,18 @@ describe("Calculator operations", () => {
     const symbols = Symbols(displayText, state, updateDisplay);
 
     clickOnButton(numbers, "5");
-    clickOnButton(symbols, "%");
-    clickOnButton(symbols, "=");
+    clickOnButton(symbols.symbolsField, "\u0025");
+    clickOnButton(symbols.symbolsColumn, "=");
     expect(state.currentNum).to.equal("0,05");
   });
   it("Addition with comma: 1,5 + 2,5 = 4", () => {
     const numbers = Numbers(displayText, state, updateDisplay);
-    const symbols = Symbols(displayText, state, updateDisplay);
+    const symbols = Symbols(displayText, state, updateDisplay).symbolsColumn;
 
     clickOnButton(numbers, "1");
     clickOnButton(numbers, ",");
     clickOnButton(numbers, "5");
-    clickOnButton(symbols, "+");
+    clickOnButton(symbols, "\u002B");
     clickOnButton(numbers, "2");
     clickOnButton(numbers, ",");
     clickOnButton(numbers, "5");
@@ -171,24 +171,24 @@ describe("Calculator operations", () => {
     const symbols = Symbols(displayText, state, updateDisplay);
 
     clickOnButton(numbers, "0");
-    clickOnButton(symbols, "+/-");
+    clickOnButton(symbols.symbolsField, "\u002B/\u2212");
     expect(state.currentNum).to.equal("-0");
 
-    clickOnButton(symbols, "+/-");
+    clickOnButton(symbols.symbolsField, "\u002B/\u2212");
     expect(state.currentNum).to.equal("0");
   });
   it("Complex sequence with comma: 1,5 + 2,5 - 1,0 = 3", () => {
     const numbers = Numbers(displayText, state, updateDisplay);
-    const symbols = Symbols(displayText, state, updateDisplay);
+    const symbols = Symbols(displayText, state, updateDisplay).symbolsColumn;
 
     clickOnButton(numbers, "1");
     clickOnButton(numbers, ",");
     clickOnButton(numbers, "5");
-    clickOnButton(symbols, "+");
+    clickOnButton(symbols, "\u002B");
     clickOnButton(numbers, "2");
     clickOnButton(numbers, ",");
     clickOnButton(numbers, "5");
-    clickOnButton(symbols, "-");
+    clickOnButton(symbols, "\u2212");
     clickOnButton(numbers, "1");
     clickOnButton(numbers, ",");
     clickOnButton(numbers, "0");
@@ -199,27 +199,43 @@ describe("Calculator operations", () => {
   it("Mixed operations: 50,5% + 1 = 1,505", () => {
     const numbers = Numbers(displayText, state, updateDisplay);
     const symbols = Symbols(displayText, state, updateDisplay);
-  
+
     clickOnButton(numbers, "5");
     clickOnButton(numbers, "0");
     clickOnButton(numbers, ",");
     clickOnButton(numbers, "5");
-    clickOnButton(symbols, "%"); 
-    clickOnButton(symbols, "+");
+    clickOnButton(symbols.symbolsField, "\u0025");
+    clickOnButton(symbols.symbolsColumn, "\u002B");
     clickOnButton(numbers, "1");
-    clickOnButton(symbols, "=");
-  
+    clickOnButton(symbols.symbolsColumn, "=");
+
     expect(state.currentNum).to.equal("1,505");
+  });
+  it("Mixed operations: 600 * 20% = 120", () => {
+    const numbers = Numbers(displayText, state, updateDisplay);
+    const symbols = Symbols(displayText, state, updateDisplay);
+
+    clickOnButton(numbers, "6");
+    clickOnButton(numbers, "0");
+    clickOnButton(numbers, "0");
+    clickOnButton(symbols.symbolsColumn, "\u00D7");
+    clickOnButton(numbers, "2");
+    clickOnButton(numbers, "0");
+    clickOnButton(symbols.symbolsField, "\u0025");
+    clickOnButton(symbols.symbolsColumn, "=");
+
+    expect(state.currentNum).to.equal("120");
   });
   it("-0 behaves like 0 in calculations: -0 + 5 = 5", () => {
     const numbers = Numbers(displayText, state, updateDisplay);
     const symbols = Symbols(displayText, state, updateDisplay);
-  
-    state.currentNum = "-0";
-    clickOnButton(symbols, "+");
+
+    state.currentNum = "0";
+    clickOnButton(symbols.symbolsField, "\u002B/\u2212");
+    clickOnButton(symbols.symbolsColumn, "\u002B");
     clickOnButton(numbers, "5");
-    clickOnButton(symbols, "=");
-  
+    clickOnButton(symbols.symbolsColumn, "=");
+
     expect(state.currentNum).to.equal("5");
   });
 });
