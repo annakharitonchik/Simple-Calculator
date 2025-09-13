@@ -1,10 +1,12 @@
 import { Numbers } from "./Numbers.js";
 import { Symbols } from "./Symbols.js";
 import { Display } from "./Display.js";
+import { Theme } from "./Theme.js";
 import "../styles/Calculator.css";
-import "../styles/Display.css"
-import "../styles/Numbers.css"
+import "../styles/Display.css";
+import "../styles/Numbers.css";
 import "../styles/Symbols.css";
+import "../styles/Theme.css";
 export const Calculator = () => {
   const calculatorDiv = document.createElement("div");
   const numsAndSymbs = document.createElement("div");
@@ -63,6 +65,7 @@ export const Calculator = () => {
 
   numsAndSymbs.appendChild(symbolsField);
   numsAndSymbs.appendChild(numbersField);
+  calculatorDiv.appendChild(Theme(symbolsColumn));
   calculatorDiv.appendChild(displayField);
   buttons.appendChild(numsAndSymbs);
   buttons.appendChild(symbolsColumn);
