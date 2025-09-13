@@ -1,0 +1,14 @@
+.DisplayField {
+  width: 100%;
+  .DisplayText {
+    padding-right: 26px;
+    margin: 5px 0;
+    display: flex;
+    text-align: justify;
+justify-content: end;
+    color: #ebebeb;
+    font-family: "Inter", sans-serif;
+   font-weight: 200;
+    font-size: 67px;
+  }
+}

@@ -4,11 +4,11 @@
     background-color: #646464;
   }
 }
-.SymbolsColumn{
-display: grid;
-height: 100%;
-grid-template-rows: repeat(5,20%);
-button{
+.SymbolsColumn {
+  display: grid;
+  height: 100%;
+  grid-template-rows: repeat(5, 20%);
+  button {
     border-radius: 0px;
     border-left: none;
     border-bottom: none;
@@ -16,11 +16,12 @@ button{
     border-right: none;
     background-color: #ff9f0a;
     color: #ebebeb;
-    font-family: "Cossette Texte", sans-serif;
+    font-family: "Inter", sans-serif;
+    font-weight:400;
     font-size: 42px;
-}
-#SymbButt7 {
-   
+  }
+  #SymbButt7 {
     border-bottom-right-radius: 13px;
+    
   }
 }

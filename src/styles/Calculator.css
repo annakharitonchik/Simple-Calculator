@@ -1,7 +1,7 @@
 .Calculator {
   display: flex;
   background-color: #535353;
-  margin: 0 auto;
+  margin: 10% auto;
   width: 390px;
   height: 540px;
   border-radius: 14px;
@@ -11,6 +11,8 @@
   outline-offset: 0px;
   box-shadow: 0px 0px 50px #777777;
   justify-content: end;
+  align-self: center;
+
 }
 .Buttons {
   display: grid;
