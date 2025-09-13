@@ -78,4 +78,4 @@ Errors are shown in the console.
     npm run deploy
   ```
 
-Check out the production version of the project here: [Beauty Shop](https://annakharitonchik.github.io/Simple-Calculator/)
+Check out the production version of the project here: [Calculator](https://annakharitonchik.github.io/Simple-Calculator/)
