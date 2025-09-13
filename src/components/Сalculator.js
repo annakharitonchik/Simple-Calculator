@@ -1,7 +1,7 @@
 import { Numbers } from "./Numbers.js";
 import { Symbols } from "./Symbols.js";
 import { Display } from "./Display.js";
-import { Theme } from "./Theme.js";
+import { colorTheme, Theme } from "./Theme.js";
 import "../styles/Calculator.css";
 import "../styles/Display.css";
 import "../styles/Numbers.css";
@@ -115,6 +115,36 @@ export const Calculator = () => {
     }
   };
 
+  document.addEventListener("DOMContentLoaded", () => {
+    const allButtons = symbolsColumn.querySelectorAll("button");
+    allButtons.forEach((btn) => (btn.dataset.themeColor = "#febc2e"));
+    allButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+          allButtons.forEach((btn) => {
+            btn.style.color = " #ebebeb";
+            btn.style.backgroundColor = colorTheme;
+            btn.dataset.toggled = "false";
+          });
+  
+          button.style.color = colorTheme;
+          button.style.backgroundColor = " #ebebeb";
+          button.dataset.toggled = "true";
+        });
+      });
+
+const activeButtons = numsAndSymbs.querySelectorAll("button");
+activeButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+  // сбрасываем всем
+  activeButtons.forEach((btn) => btn.classList.remove("active"));
+  // делаем активной только нажатую
+  button.classList.add("active");
+  setTimeout(() => {
+    button.classList.remove("active");
+  }, 400);
+});
+  })})
+ 
   document.addEventListener("keydown", keyboardInput);
   return calculatorDiv;
 };

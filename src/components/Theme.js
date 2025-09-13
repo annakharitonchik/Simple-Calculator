@@ -1,12 +1,19 @@
+export let colorTheme = "#febc2e";
+
 export const Theme = (symbolsColumn) => {
   const ThemeDiv = document.createElement("div");
   ThemeDiv.classList = "ThemeDiv";
   const colors = ["#ff5f57", "#febc2e", "#28c840"];
-  const changeColor = (arrOfButtons, backgroundColors) => {
+  const changeColor = (arrOfButtons, backgroundColor) => {
+    colorTheme = backgroundColor;
     const buttons = arrOfButtons.querySelectorAll("button");
-    console.log(buttons);
     buttons.forEach((button) => {
-      button.style.backgroundColor = backgroundColors;
+      if (button.dataset.toggled === "true") {
+        button.style.color = colorTheme;
+      
+      }else if (button.dataset.toggled === "false"){
+      button.style.backgroundColor = colorTheme;
+      button.style.color = " #ebebeb";}
     });
   };
   colors.map((color) => {

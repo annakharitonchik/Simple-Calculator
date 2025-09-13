@@ -17,6 +17,11 @@
     font-size: 37px;
     transition: ease 1s;
   }
+  button.active {
+    background-color: #ebebebf5;
+    transition: ease 1s;
+  }
+  
 }
 #NumButt0 {
   grid-column-start: 1;

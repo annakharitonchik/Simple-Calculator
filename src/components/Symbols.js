@@ -1,6 +1,9 @@
+import { colorTheme } from "./Theme.js";
+
 export const Symbols = (displayText, state, updateDisplay) => {
   const symbolsField = document.createElement("div");
   const symbolsColumn = document.createElement("div");
+
   symbolsColumn.classList = "SymbolsColumn";
   const symbols = [
     "AC",
@@ -16,7 +19,7 @@ export const Symbols = (displayText, state, updateDisplay) => {
     if (typeof num === "number") num = num.toString();
     return num.replace(".", ",");
   };
-  
+
   symbols.forEach((symb, i) => {
     const symbButton = document.createElement("button");
     symbButton.textContent = symb;
@@ -68,6 +71,15 @@ export const Symbols = (displayText, state, updateDisplay) => {
         state.currentOperator = "";
         state.lastButton = "";
         result = 0;
+
+        const symbolsColumnButtons = symbolsColumn.querySelectorAll("button");
+        symbolsColumnButtons.forEach((btn) => {
+          btn.style.color = " #ebebeb";
+          btn.style.backgroundColor = colorTheme;
+          btn.dataset.toggled = "false";
+        });
+
+        console.log(symbolsColumnButtons);
       } else if (["\u002B", "\u2212", "\u00F7", "\u00D7"].includes(symb)) {
         if (prevButton === "\u003D") {
           state.firstArg = state.currentNum;
@@ -107,7 +119,6 @@ export const Symbols = (displayText, state, updateDisplay) => {
           } else {
             state.currentNum = "-" + state.currentNum.toString();
           }
-          
         }
       } else if (symb === "\u0025") {
         if (!state.currentNum || state.currentNum === "Error") {
