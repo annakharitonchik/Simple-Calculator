@@ -16,7 +16,7 @@ Simple-Calculator/
 │           
 │
 ├─ tests/             
-│   └─ calculator.    — tests for the on Mocha
+│   └─ calculator.    — tests for the project on Mocha
 |      test.js      
 │
 ├─ dist/              — project build (ready for deployment)
